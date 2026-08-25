@@ -1,0 +1,199 @@
+{
+	"$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+	"UUID": "com.goldenbunker.whackadictator",
+	"SDKVersion": 2,
+	"Name": "Whack-A-Dictator",
+	"Version": "1.0.0.0",
+	"Author": "Golden Bunker Games",
+	"Description": "Caricatured strongmen keep surfacing from a hoard of gold coins. Whack the right ones before they duck back under: four are worth a point each and the one in the red campaign cap is worth three, but three more faces cost you 5, 10 and 20 points if you hit them. Eight figures in all, four difficulty levels, timed rounds of 5/10/20/30 seconds plus an endless mode, and a high score kept for every combination.",
+	"Category": "Whack-A-Dictator",
+	"CategoryIcon": "imgs/actions/category",
+	"Icon": "imgs/plugin/icon",
+	"CodePath": "bin/plugin.js",
+	"Nodejs": {
+		"Version": "20"
+	},
+	"Software": {
+		"MinimumVersion": "6.5"
+	},
+	"OS": [
+		{
+			"Platform": "windows",
+			"MinimumVersion": "10"
+		},
+		{
+			"Platform": "mac",
+			"MinimumVersion": "12"
+		}
+	],
+	"Profiles": [
+		{
+			"Name": "profiles/StreamDeck",
+			"DeviceType": 0,
+			"DontAutoSwitchWhenInstalled": true
+		},
+		{
+			"Name": "profiles/StreamDeckMini",
+			"DeviceType": 1,
+			"DontAutoSwitchWhenInstalled": true
+		},
+		{
+			"Name": "profiles/StreamDeckXL",
+			"DeviceType": 2,
+			"DontAutoSwitchWhenInstalled": true
+		},
+		{
+			"Name": "profiles/StreamDeckPlus",
+			"DeviceType": 7,
+			"DontAutoSwitchWhenInstalled": true
+		},
+		{
+			"Name": "profiles/StreamDeckNeo",
+			"DeviceType": 9,
+			"DontAutoSwitchWhenInstalled": true
+		}
+	],
+	"Actions": [
+		{
+			"UUID": "com.goldenbunker.whackadictator.launcher",
+			"Name": "Whack-A-Dictator",
+			"Icon": "imgs/actions/launcher",
+			"Tooltip": "Open the Whack-A-Dictator game board",
+			"States": [
+				{
+					"Image": "imgs/keys/launcher",
+					"TitleColor": "#FFE9A0",
+					"TitleAlignment": "top",
+					"FontFamily": "Verdana",
+					"FontStyle": "Bold",
+					"FontSize": 8
+				}
+			],
+			"SupportedInMultiActions": false
+		},
+		{
+			"UUID": "com.goldenbunker.whackadictator.start",
+			"Name": "Start",
+			"Icon": "imgs/actions/start",
+			"Tooltip": "Start a round; hold to cancel a running round or leave the game board",
+			"States": [
+				{
+					"Image": "imgs/keys/idle",
+					"TitleColor": "#FFE9A0",
+					"TitleAlignment": "middle",
+					"FontFamily": "Verdana",
+					"FontStyle": "Bold",
+					"FontSize": 10
+				},
+				{
+					"Image": "imgs/keys/active",
+					"TitleColor": "#FFFFFF",
+					"TitleAlignment": "middle",
+					"FontFamily": "Verdana",
+					"FontStyle": "Bold",
+					"FontSize": 10
+				}
+			],
+			"DisableAutomaticStates": true,
+			"SupportedInMultiActions": false,
+			"UserTitleEnabled": false,
+			"VisibleInActionsList": false
+		},
+		{
+			"UUID": "com.goldenbunker.whackadictator.timer",
+			"Name": "Difficulty / Timer",
+			"Icon": "imgs/actions/timer",
+			"Tooltip": "Press to change the round length, hold to change the difficulty",
+			"PropertyInspectorPath": "ui/timer.html",
+			"States": [
+				{
+					"Image": "imgs/keys/idle",
+					"TitleColor": "#FFE9A0",
+					"TitleAlignment": "middle",
+					"FontFamily": "Verdana",
+					"FontStyle": "Bold",
+					"FontSize": 10
+				},
+				{
+					"Image": "imgs/keys/active",
+					"TitleColor": "#FFFFFF",
+					"TitleAlignment": "middle",
+					"FontFamily": "Verdana",
+					"FontStyle": "Bold",
+					"FontSize": 10
+				}
+			],
+			"DisableAutomaticStates": true,
+			"SupportedInMultiActions": false,
+			"UserTitleEnabled": false,
+			"VisibleInActionsList": false
+		},
+		{
+			"UUID": "com.goldenbunker.whackadictator.score",
+			"Name": "Score",
+			"Icon": "imgs/actions/score",
+			"Tooltip": "Press to toggle between the current score and the high score",
+			"States": [
+				{
+					"Image": "imgs/keys/idle",
+					"TitleColor": "#FFE9A0",
+					"TitleAlignment": "middle",
+					"FontFamily": "Verdana",
+					"FontStyle": "Bold",
+					"FontSize": 10
+				},
+				{
+					"Image": "imgs/keys/active",
+					"TitleColor": "#FFFFFF",
+					"TitleAlignment": "middle",
+					"FontFamily": "Verdana",
+					"FontStyle": "Bold",
+					"FontSize": 10
+				}
+			],
+			"DisableAutomaticStates": true,
+			"SupportedInMultiActions": false,
+			"UserTitleEnabled": false,
+			"VisibleInActionsList": false
+		},
+		{
+			"UUID": "com.goldenbunker.whackadictator.tile",
+			"Name": "Game Tile",
+			"Icon": "imgs/actions/tile",
+			"Tooltip": "A tile of the game board",
+			"States": [
+				{
+					"Image": "imgs/tiles/idle"
+				},
+				{
+					"Image": "imgs/tiles/X"
+				},
+				{
+					"Image": "imgs/tiles/F"
+				},
+				{
+					"Image": "imgs/tiles/D"
+				},
+				{
+					"Image": "imgs/tiles/R"
+				},
+				{
+					"Image": "imgs/tiles/D2028"
+				},
+				{
+					"Image": "imgs/tiles/A"
+				},
+				{
+					"Image": "imgs/tiles/J"
+				},
+				{
+					"Image": "imgs/tiles/B"
+				}
+			],
+			"DisableAutomaticStates": true,
+			"SupportedInMultiActions": false,
+			"UserTitleEnabled": false,
+			"VisibleInActionsList": false
+		}
+	]
+}

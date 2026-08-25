@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Whack-A-Dictator</title>
+		<link rel="stylesheet" href="pi.css" />
+	</head>
+	<body>
+		<main>
+			<section>
+				<div class="row">
+					<label for="difficulty">Difficulty</label>
+					<select id="difficulty">
+						<option value="0">Easy</option>
+						<option value="1">Normal</option>
+						<option value="2">Hard</option>
+						<option value="3">Custom</option>
+					</select>
+				</div>
+
+				<div class="row">
+					<label for="roundLength">Round</label>
+					<select id="roundLength">
+						<option value="0">5 seconds</option>
+						<option value="1">10 seconds</option>
+						<option value="2">20 seconds</option>
+						<option value="3">30 seconds</option>
+						<option value="4">Endless</option>
+					</select>
+				</div>
+
+				<p class="hint">
+					You can also change these on the device: press the Difficulty key to cycle the round length,
+					hold it to cycle the difficulty.
+				</p>
+			</section>
+
+			<section>
+				<h2>Scoring</h2>
+				<p class="hint legend-hint">What each figure is worth. The costly ones come up least often.</p>
+
+				<!-- Static: the roster only changes when the plugin is rebuilt, and the
+				     images are the same tiles the board shows, so a face here is the face
+				     you have to recognise in the round. -->
+				<ul class="legend">
+					<li><img src="../imgs/tiles/X.png" alt="" /><span class="gain">+1</span></li>
+					<li><img src="../imgs/tiles/F.png" alt="" /><span class="gain">+1</span></li>
+					<li><img src="../imgs/tiles/D.png" alt="" /><span class="gain">+1</span></li>
+					<li><img src="../imgs/tiles/R.png" alt="" /><span class="gain">+1</span></li>
+					<li><img src="../imgs/tiles/D2028.png" alt="" /><span class="gain">+3</span></li>
+					<li><img src="../imgs/tiles/A.png" alt="" /><span class="cost">-5</span></li>
+					<li><img src="../imgs/tiles/J.png" alt="" /><span class="cost">-10</span></li>
+					<li><img src="../imgs/tiles/B.png" alt="" /><span class="cost">-20</span></li>
+				</ul>
+			</section>
+
+			<section id="customSection" hidden>
+				<h2>Custom difficulty</h2>
+				<p class="hint">How long a figure stays up. A value is picked at random from this range every time.</p>
+
+				<div class="row">
+					<label for="customMin">Shortest</label>
+					<div class="field">
+						<input id="customMin" type="number" min="200" max="5000" step="50" />
+						<span class="unit">ms</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<label for="customMax">Longest</label>
+					<div class="field">
+						<input id="customMax" type="number" min="200" max="5000" step="50" />
+						<span class="unit">ms</span>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2>High scores</h2>
+				<div id="scores" class="scores"></div>
+				<div class="row">
+					<label></label>
+					<button id="reset" type="button" class="danger">Reset all high scores</button>
+				</div>
+			</section>
+		</main>
+
+		<script src="pi.js"></script>
+	</body>
+</html>
