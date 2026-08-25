@@ -3,7 +3,7 @@
 	"UUID": "com.goldenbunker.whackadictator",
 	"SDKVersion": 2,
 	"Name": "Whack-A-Dictator",
-	"Version": "1.0.1.0",
+	"Version": "1.0.2.0",
 	"Author": "Golden Bunker Games",
 	"Description": "Caricatured strongmen keep surfacing from a hoard of gold coins. Whack the right ones before they duck back under: four are worth a point each and the one in the red campaign cap is worth three, but three more faces cost you 5, 10 and 20 points if you hit them. Eight figures in all, four difficulty levels, timed rounds of 5/10/20/30 seconds plus an endless mode, and a high score kept for every combination.",
 	"Category": "Whack-A-Dictator",

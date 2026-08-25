@@ -1,6 +1,6 @@
 {
 	"name": "whack-a-dictator",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Whack-A-Dictator Stream Deck plugin",
 	"private": true,
 	"type": "module",
