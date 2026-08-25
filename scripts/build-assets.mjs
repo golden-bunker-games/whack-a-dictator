@@ -1,16 +1,21 @@
 /**
- * Renders every plugin asset from scripts/art.mjs into the .sdPlugin folder.
+ * Renders every plugin asset into the .sdPlugin folder.
  *
- * Stream Deck accepts SVG for key images and action icons, but the plugin icon
- * must be PNG at 256 x 256 and 512 x 512 (@2x), so that one is rasterised.
+ * Two kinds. The hoard, the HUD backdrops and the action icons are SVG straight
+ * out of scripts/art.mjs, which Stream Deck accepts for key images and icons.
+ * The figure tiles, the launcher key and the plugin icon are PNG, because they
+ * composite a portrait bitmap over that artwork -- and the manifest schema
+ * demands PNG at 256 and 512 px for the plugin icon in any case.
+ *
+ * It also checks the two hand-written files that mirror the roster, and refuses
+ * to build when either has drifted.
  */
 
 import { access, cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import sharp from "sharp";
 
-import { ASSET_PATHS, PNG_ASSETS, SVG_ASSETS, TILE_ASSETS } from "./assets.mjs";
+import { ASSET_PATHS, SVG_ASSETS, TILE_ASSETS } from "./assets.mjs";
 import { FIGURE_DIR, FIGURE_IDS, FIGURES, TILE_STATE_IMAGES, formatValue } from "./roster.mjs";
 import { renderFigureTile } from "./tiles.mjs";
 
@@ -76,17 +81,10 @@ for (const [relative, draw] of Object.entries(SVG_ASSETS)) {
 	await writeFile(target, draw(), "utf8");
 }
 
-for (const { path: relative, draw, size } of PNG_ASSETS) {
-	const target = join(imgs, relative);
-	await ensureDir(dirname(target));
-	const png = await sharp(Buffer.from(draw())).resize(size, size).png({ compressionLevel: 9 }).toBuffer();
-	await writeFile(target, png);
-}
-
-// The portraits are the one input this repository does not carry (see the README
-// on why), so a fresh clone hits this before anything else. An unhandled ENOENT
-// from deep inside sharp would send a newcomer looking for a bug that is not
-// there; name what is missing and where it goes instead.
+// The portraits are committed, so this normally passes. It exists for the case
+// that does happen: a figure added to FIGURES, or renamed, without its file. The
+// failure would otherwise be an unhandled ENOENT from deep inside sharp, which
+// sends a newcomer looking for a bug that is not there.
 const missing = [];
 for (const id of FIGURE_IDS) {
 	try {
@@ -101,7 +99,8 @@ if (missing.length > 0) {
 		`assets: ${missing.length} of ${FIGURE_IDS.length} portraits are missing from ${FIGURE_DIR}\n` +
 			`  missing: ${missing.join(", ")}\n` +
 			`  Each figure in the FIGURES table in src/config.ts needs a square <id>.png there,\n` +
-			`  drawn on a flat blue field so the cut-out can key it out. See "The figures" in the README.`,
+			`  drawn on a flat blue field so the cut-out can key it out.\n` +
+			`  See "Swapping the figures" in the README.`,
 	);
 }
 
@@ -136,6 +135,11 @@ for (const stale of SUPERSEDED) {
 	}
 }
 
+// The plugin writes a log into the very folder `npm run pack` zips, so a local
+// test run would otherwise ride along inside the public release asset. It is
+// cleared here because every pack is preceded by a build.
+await rm(join(plugin, "logs"), { recursive: true, force: true, maxRetries: 10, retryDelay: 150 });
+
 // The licence travels with the plugin, not just with the repository: MIT requires
 // the notice in "all copies or substantial portions of the Software", and the
 // .streamDeckPlugin is how most people will get it. Copied at build time rather
@@ -143,5 +147,5 @@ for (const stale of SUPERSEDED) {
 await cp(join(root, "LICENSE"), join(plugin, "LICENSE"));
 
 console.log(
-	`assets: ${Object.keys(SVG_ASSETS).length} svg, ${PNG_ASSETS.length + TILE_ASSETS.length} png, 1 licence`,
+	`assets: ${Object.keys(SVG_ASSETS).length} svg, ${TILE_ASSETS.length} png, 1 licence`,
 );

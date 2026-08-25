@@ -173,9 +173,12 @@ The roster is data, not code. To add, drop or replace a figure:
    and anything the figure encloses survives. Frame it like the existing ones, head near
    the top and shoulders running off the bottom edge.
 3. Add or remove the matching `imgs/tiles/<id>` state on the tile action in
-   `manifest.json`, and its row in the legend in `ui/timer.html`.
-4. Run `npm run assets`. It compares the manifest and the legend against the roster and
-   names whatever you missed rather than shipping a board that shows the wrong face.
+   `manifest.json`, its row in the legend in `ui/timer.html`, and -- if the figure count
+   changed -- the `repeat(8, 1fr)` column count in `ui/pi.css`.
+4. Run `npm run assets`. It compares the manifest and the legend rows against the roster
+   and names whatever you missed rather than shipping a board that shows the wrong face.
+   The `pi.css` column count is the one place it does not check, because a legend with
+   the wrong number of columns is ugly rather than wrong.
 
 Replacing all eight is a supported thing to do -- put your own portraits in and the game
 is yours. `npm run preview` renders a contact sheet to check how they read at key size.
@@ -196,12 +199,18 @@ src/                     plugin sources (TypeScript)
   actions/               one file per Stream Deck action
 scripts/
   art.mjs                every vector drawing in the plugin
+  assets.mjs             the list of artwork files, and which figure fronts the plugin
   roster.mjs             the FIGURES table, read back out of src/config.ts
   figures.mjs            cuts a portrait out of its blue backing field
   tiles.mjs              composites a portrait into the coin hoard
-  build-assets.mjs       art + portraits -> SVG/PNG
+  build-assets.mjs       art + portraits -> SVG/PNG, and the roster drift checks
   build-profiles.mjs     game board profiles
+  build-notices.mjs      THIRD-PARTY-NOTICES.md, derived from package-lock.json
   zip.mjs                minimal ZIP writer for the profiles
+  deploy.mjs             install into the local Stream Deck
+  doctor.mjs             report what is installed, logged and imported
+  preview.mjs            contact sheet of every tile
+  preview-face.mjs       the same figures cropped to the head, for checking framing
 com.goldenbunker.whackadictator.sdPlugin/
   manifest.json          plugin definition
   ui/                    settings panel
@@ -227,7 +236,7 @@ fork it, take pieces into your own projects, sell whatever you build.
 The eight portraits in `portraits/` sit outside that grant, along with everything the
 build composites from them (`imgs/tiles/*.png`, `imgs/keys/launcher*.png`,
 `imgs/plugin/icon*.png`). They came out of a generative image model, and it is doubtful
-that copyright subsists in AI output at all under Swiss, EU or US law -- so no copyright
+that copyright subsists in AI output at all in most jurisdictions -- so no copyright
 is asserted in them and none is granted. In practice, do as you like; we just will not
 license what we may not own.
 

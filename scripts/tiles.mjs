@@ -1,5 +1,5 @@
 /**
- * Builds the figure tiles by compositing the hand-drawn pixel art into the
+ * Builds the figure tiles by compositing the supplied portrait bitmaps into the
  * vector hoard.
  *
  * The rest of the artwork is generated SVG, but the figures are bitmaps, so the
@@ -33,7 +33,7 @@ const ROUNDED_MASK = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72
 /**
  * Renders one figure tile.
  *
- * @param id Figure id, naming a `<id>.png` in the figures folder.
+ * @param id Figure id, naming a `<id>.png` in portraits/.
  * @param size Output edge length in pixels.
  * @param opts.rise 0..1, how far the figure clears the hoard (default 1).
  * @param opts.rounded Clip to rounded corners, for the plugin icon.

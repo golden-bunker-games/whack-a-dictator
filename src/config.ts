@@ -39,7 +39,7 @@ export const enum Hud {
 
 /** One of the figures that can surface on a tile. */
 export type Figure = {
-	/** Portrait file in the figures folder, without the extension. */
+	/** Portrait file in portraits/, without the extension. */
 	readonly id: string;
 	/** What whacking this one is worth. Negative figures cost the player. */
 	readonly value: number;
@@ -52,8 +52,8 @@ export type Figure = {
  *
  * This is the source of truth for the artwork as well. `scripts/roster.mjs`
  * reads the table straight out of this file to decide which portraits to build
- * and in which order, so adding a figure is a line here plus `<id>.png` in the
- * figures folder -- but that parser wants one entry per line, in this field
+ * and in which order, so adding a figure is a line here plus `<id>.png` in
+ * portraits/ -- but that parser wants one entry per line, in this field
  * order, and the tile action in the manifest has to grow a matching state.
  * `npm run assets` fails loudly rather than quietly shipping a mismatch.
  *

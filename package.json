@@ -1,17 +1,18 @@
 {
 	"name": "whack-a-dictator",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Whack-A-Dictator Stream Deck plugin",
 	"private": true,
 	"type": "module",
-	"license": "MIT",
+	"license": "SEE LICENSE IN LICENSE",
 	"engines": {
 		"node": ">=20"
 	},
 	"scripts": {
 		"assets": "node scripts/build-assets.mjs",
 		"profiles": "node scripts/build-profiles.mjs",
-		"build": "npm run assets && npm run profiles && rollup -c",
+		"notices": "node scripts/build-notices.mjs",
+		"build": "npm run notices && npm run assets && npm run profiles && rollup -c",
 		"watch": "rollup -c -w --watch.onEnd=\"npm run deploy\"",
 		"typecheck": "tsc --noEmit",
 		"validate": "streamdeck validate com.goldenbunker.whackadictator.sdPlugin",

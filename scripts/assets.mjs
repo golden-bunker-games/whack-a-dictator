@@ -22,11 +22,12 @@ export const SVG_ASSETS = {
 	"actions/launcher.svg": art.iconLauncher,
 };
 
-/** Assets rasterised to PNG, at the sizes the manifest schema demands. */
-export const PNG_ASSETS = [];
-
-/** The figure the plugin fronts with on the launcher key and the store icon. */
-const FRONT_FIGURE = "D";
+/**
+ * The figure the plugin fronts with on the launcher key and the store icon.
+ * Exported so the previews show the same one; hard-coding it in two places is
+ * how a preview ends up rendering a figure the roster no longer has.
+ */
+export const FRONT_FIGURE = "D";
 
 /**
  * One tile per figure, composited from the pixel art rather than drawn. They
@@ -51,8 +52,4 @@ export const TILE_ASSETS = [
 ];
 
 /** Every artwork file, relative to the plugin's imgs folder. */
-export const ASSET_PATHS = [
-	...Object.keys(SVG_ASSETS),
-	...PNG_ASSETS.map(({ path }) => path),
-	...TILE_ASSETS.map(({ path }) => path),
-];
+export const ASSET_PATHS = [...Object.keys(SVG_ASSETS), ...TILE_ASSETS.map(({ path }) => path)];

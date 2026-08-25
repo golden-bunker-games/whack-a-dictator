@@ -11,9 +11,9 @@ the coin hoard, the HUD backdrops and the action icons.
 It does not cover the eight portraits in portraits/, nor the images the build
 composites from them -- imgs/tiles/*.png, imgs/keys/launcher*.png and
 imgs/plugin/icon*.png. Those were produced with a generative image model, and in
-Switzerland, the European Union and the United States copyright generally
-requires a human intellectual creation, so it is doubtful that any copyright
-subsists in them at all. We therefore assert none, and grant none. In practice
+most jurisdictions -- the European Union and the United States among them --
+copyright requires a human intellectual creation, so it is doubtful that any
+copyright subsists in them at all. We therefore assert none, and grant none. In practice
 you may do as you like with them; we simply cannot license what we may not own.
 
 Note that the composited tiles combine a portrait with the coin hoard drawn by

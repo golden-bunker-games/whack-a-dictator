@@ -15,6 +15,7 @@ import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
 import * as art from "./art.mjs";
+import { FRONT_FIGURE } from "./assets.mjs";
 import { FIGURES, formatValue } from "./roster.mjs";
 import { renderFigureTile } from "./tiles.mjs";
 
@@ -38,7 +39,7 @@ const ASSETS = [
 			label: `${id} ${formatValue(value)}`,
 		})),
 	)),
-	{ png: await renderFigureTile("D", BIG, { rise: 0.85 }), label: "launcher" },
+	{ png: await renderFigureTile(FRONT_FIGURE, BIG, { rise: 0.85 }), label: "launcher" },
 ];
 
 const composites = [];

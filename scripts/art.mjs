@@ -139,11 +139,6 @@ function defs() {
 		`<stop offset="0" stop-color="#0B0903"/>` +
 		`<stop offset="1" stop-color="${PALETTE.goldDeep}"/>` +
 		`</radialGradient>` +
-		`<linearGradient id="statue" x1="24" y1="10" x2="50" y2="50" gradientUnits="userSpaceOnUse">` +
-		`<stop offset="0" stop-color="${PALETTE.goldLight}"/>` +
-		`<stop offset=".5" stop-color="${PALETTE.goldMid}"/>` +
-		`<stop offset="1" stop-color="${PALETTE.goldDark}"/>` +
-		`</linearGradient>` +
 		`<linearGradient id="glow" x1="0" y1="0" x2="0" y2="34" gradientUnits="userSpaceOnUse">` +
 		`<stop offset="0" stop-color="${PALETTE.goldMid}" stop-opacity=".22"/>` +
 		`<stop offset="1" stop-color="${PALETTE.goldMid}" stop-opacity="0"/>` +

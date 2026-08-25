@@ -27,7 +27,7 @@ function isBacking(r, g, b) {
 /**
  * Loads one figure and returns it as a cropped, transparent-background PNG.
  *
- * @param name File name inside the figures folder.
+ * @param name File name inside portraits/.
  * @returns {{buffer: Buffer, width: number, height: number}}
  */
 export async function cutout(name) {

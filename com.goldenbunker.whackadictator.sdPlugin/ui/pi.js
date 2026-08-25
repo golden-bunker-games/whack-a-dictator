@@ -2,8 +2,9 @@
  * Property inspector for Whack-A-Dictator.
  *
  * Talks the Stream Deck property inspector protocol directly rather than pulling
- * in a component library, so the plugin ships with no external dependencies and
- * works with no network access.
+ * in a component library, so this panel loads nothing from a CDN and works with
+ * no network access. (The plugin's own bundle does inline a few packages -- see
+ * THIRD-PARTY-NOTICES.md -- but none of them reach this file.)
  */
 
 const DIFFICULTIES = ["Easy", "Normal", "Hard", "Custom"];
